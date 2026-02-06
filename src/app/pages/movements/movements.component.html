@@ -1,30 +1,50 @@
-<div class="movement-form">
-  <h2>Knee Flexion–Extension</h2>
+<div class="layout">
 
-  <form [formGroup]="rangeForm" (ngSubmit)="saveMovement()">
+  <!-- SIDEBAR STÂNGA -->
+  <aside class="sidebar">
+    <button
+      mat-stroked-button
+      *ngFor="let m of movements"
+      [class.active]="selectedMovement === m"
+      (click)="selectMovement(m)">
+      {{ m | titlecase }}
+    </button>
+  </aside>
 
-    <div class="form-group">
-      <label>Range of Motion (degrees)</label>
+  <!-- CONȚINUT CENTRAL -->
+  <main class="content">
 
-      <mat-slider min="0" max="90" step="1">
-        <input matSliderThumb formControlName="range">
-      </mat-slider>
+    <div *ngFor="let m of movements">
+      <div *ngIf="selectedMovement === m" class="movement-form">
+        <h2>{{ m | titlecase }}</h2>
 
-      <div class="slider-value">
-        Selected: {{ currentRange }}°
+        <form [formGroup]="forms[m]" (ngSubmit)="saveMovement()">
+
+          <div class="form-group">
+            <label>Range of Motion (degrees)</label>
+            <mat-slider min="0" max="90" step="1">
+              <input matSliderThumb formControlName="range">
+            </mat-slider>
+            <div class="slider-value">
+              Selected: {{ forms[m].get('range')!.value }}°
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Number of Repetitions</label>
+            <mat-form-field appearance="outline">
+              <input matInput type="number" formControlName="reps">
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button color="primary" type="submit">
+            Save Movement
+          </button>
+
+        </form>
       </div>
     </div>
 
-    <div class="form-group">
-      <label>Number of Repetitions</label>
-      <mat-form-field appearance="outline">
-        <input matInput type="number" formControlName="reps">
-      </mat-form-field>
-    </div>
+  </main>
 
-    <button mat-raised-button color="primary" type="submit">
-      Save Movement
-    </button>
-
-  </form>
 </div>

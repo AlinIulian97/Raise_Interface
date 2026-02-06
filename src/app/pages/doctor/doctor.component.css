@@ -1,0 +1,21 @@
+.doctor-container {
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.message {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}

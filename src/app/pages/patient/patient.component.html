@@ -1,0 +1,15 @@
+<div class="patient-container">
+  <h2>Patients List</h2>
+
+  <mat-card *ngFor="let patient of patients" class="patient-card">
+    <mat-card-title>{{ patient.firstName }} {{ patient.lastName }}</mat-card-title>
+    <mat-card-content>
+      Age: {{ patient.age }} <br>
+      Gender: {{ patient.gender }} <br>
+      Diagnosis: {{ patient.diagnosis }} <br>
+    Note: {{ patient.note }}
+    </mat-card-content>
+  </mat-card>
+
+  <p *ngIf="patients.length === 0">No patients added yet.</p>
+</div>

@@ -1,11 +1,12 @@
 .movement-form {
-  max-width: 500px;
-  margin: 40px auto;
+  width: 420px;
+  max-width: 100%;
+  /* margin auto nu mai e necesar, acum e fix în stânga sus */
+  margin: 0;
   padding: 30px;
   background: #f0f4ff;
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  font-family: 'Arial', sans-serif;
 }
 
 .movement-form h2 {
@@ -49,3 +50,64 @@ button {
   font-size: 16px;
 }
 
+
+
+.layout {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 190px;               /* mai îngust */
+  padding: 12px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafafa;
+}
+
+/* BUTOANE */
+.sidebar button {
+  width: 100%;
+  justify-content: flex-start;
+  white-space: nowrap;        /* 🔥 UN SINGUR RÂND */
+  overflow: hidden;
+  text-overflow: ellipsis;    /* … dacă e prea lung */
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+/* BUTON ACTIV */
+.sidebar button.active {
+  background-color: #1976d2;
+  color: white;
+}
+
+/* CONȚINUT CENTRAL */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;   /* mutăm pe orizontală la stânga */
+  align-items: flex-start;       /* mutăm pe verticală sus */
+  padding: 20px 30px;            /* spațiu aerisit sus și lateral */
+}
+
+
+/* FORMULAR */
+.movement-form {
+  width: 420px;
+}
+
+/* PLACEHOLDER */
+.placeholder {
+  text-align: center;
+  color: #777;
+}

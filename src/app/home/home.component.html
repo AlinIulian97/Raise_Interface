@@ -1,4 +1,58 @@
-<h1>{{ title }}</h1>
-<button (click)="title = 'Ai apăsat butonul!'">
-  Click
-</button>
+<div class="auth-container">
+
+  <div class="auth-box">
+
+    <h2 *ngIf="!showCreateForm">Login</h2>
+    <h2 *ngIf="showCreateForm">Create Account</h2>
+
+    <!-- LOGIN FORM -->
+    <form *ngIf="!showCreateForm" [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="patient">Patient</mat-option>
+          <mat-option value="doctor">Doctor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Login</button>
+
+      <p class="switch" (click)="toggleForm()">Don't have an account? Create one</p>
+    </form>
+
+    <!-- CREATE ACCOUNT FORM -->
+    <form *ngIf="showCreateForm" [formGroup]="createForm" (ngSubmit)="createAccount()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Create Account</button>
+
+      <p class="switch" (click)="toggleForm()">Already have an account? Login</p>
+    </form>
+
+  </div>
+</div>
