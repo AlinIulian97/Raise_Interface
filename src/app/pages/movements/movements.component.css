@@ -1,0 +1,51 @@
+.movement-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f0f4ff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.movement-form h2 {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+.slider-value {
+  text-align: right;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  font-weight: bold;
+  font-size: 16px;
+}
+

@@ -1,0 +1,17 @@
+.spacer {
+  flex: 2 2  auto;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  position: absolute;
+  top: 20 px;
+  right: 0px;
+  height: 80px;   /* NU width */
+   width: auto;
+}
