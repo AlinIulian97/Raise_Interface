@@ -2,13 +2,17 @@ import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon } from "@angular/material/icon";
+
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, RouterModule, MatIconModule],
+  imports: [MatToolbarModule, MatButtonModule, RouterModule, MatIcon],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']   // ✅ corect
+  styleUrl: './navbar.component.css'
+  
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+
+}

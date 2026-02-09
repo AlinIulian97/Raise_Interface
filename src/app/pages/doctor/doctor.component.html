@@ -27,6 +27,16 @@
       </mat-select>
     </mat-form-field>
 
+        <mat-form-field appearance="outline">
+      <mat-label>Height</mat-label>
+      <input matInput type="number" [(ngModel)]="newPatient.height" name="height">
+    </mat-form-field>
+
+       <mat-form-field appearance="outline">
+      <mat-label>Weight</mat-label>
+      <input matInput type="number" [(ngModel)]="newPatient.weight" name="weight">
+    </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Diagnosis</mat-label>
       <input matInput [(ngModel)]="newPatient.diagnosis" name="diagnosis">

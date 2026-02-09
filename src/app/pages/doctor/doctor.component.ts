@@ -9,10 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { Patient } from '../../model/model/patient.model';
 import { PatientService } from '../../services/patient.service';
 
+
+
 @Component({
   selector: 'app-doctor',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule ],
   templateUrl: './doctor.component.html',
   styleUrls: ['./doctor.component.css']
 })
@@ -22,6 +24,8 @@ export class DoctorComponent {
     lastName: '',
     age: 0,
     gender: '',
+    height: 0,
+    weight: 0,
     diagnosis: '',
     note: '',
   };
@@ -30,16 +34,31 @@ export class DoctorComponent {
 
   constructor(private patientService: PatientService) {}
 
-  addPatient() {
-    if (!this.newPatient.firstName || !this.newPatient.lastName) {
-      this.message = 'Please fill in all required fields.';
-      return;
-    }
-
-    this.patientService.addPatient(this.newPatient);
-    this.message = `Patient ${this.newPatient.firstName} ${this.newPatient.lastName} has been added!`;
-
-    // Reset form
-    this.newPatient = { firstName: '', lastName: '', age: 0, gender: '', diagnosis: '' , note: '' };
+ addPatient() {
+  if (!this.newPatient.firstName || !this.newPatient.lastName) {
+    this.message = 'Please fill in all required fields.';
+    return;
   }
-}
+
+  this.patientService.addPatient(this.newPatient).subscribe({
+    next: (createdPatient) => {
+      this.message = `Patient ${createdPatient.firstName} ${createdPatient.lastName} has been added!`;
+
+      // Reset form
+      this.newPatient = {
+        firstName: '',
+        lastName: '',
+        age: 0,
+        gender: '',
+        height: 0,
+        weight: 0,
+        diagnosis: '',
+        note: ''
+      };
+    },
+    error: (err) => {
+      console.error(err);
+      this.message = 'Error adding patient. Please try again.';
+    }
+  });
+}}
