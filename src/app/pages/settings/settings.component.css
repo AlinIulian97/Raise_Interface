@@ -1,0 +1,108 @@
+/* FORM */
+.movement-form {
+  width: 420px;
+  padding: 30px;
+  background: #f0f4ff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.movement-form h2 {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+.slider-value {
+  text-align: right;
+  font-weight: bold;
+  color: #1976d2;
+  margin-top: 5px;
+}
+
+/* BUTTON */
+button {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 60%;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #115293;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f6f8;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 190px;
+  padding: 12px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafafa;
+}
+
+.sidebar button {
+  width: 100%;
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+.sidebar button.active {
+  background-color: #1976d2;
+  color: white;
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 20px 30px;
+}
+
+/* PLACEHOLDER */
+.placeholder {
+  margin-top: 100px;
+  color: #777;
+  font-size: 16px;
+}
+
+input[type="number"] {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 120px;
+  align-self: flex-end;
+}
+

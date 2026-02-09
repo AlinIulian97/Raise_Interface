@@ -1,1 +1,98 @@
-<p>settings works!</p>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <button
+      *ngFor="let motor of motors"
+      (click)="selectMotor(motor)"
+      [class.active]="selectedMotor === motor">
+      {{ motor }}
+    </button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <div class="movement-form" *ngIf="selectedMotor; else placeholder">
+      <h2>{{ selectedMotor }} Settings</h2>
+
+      <!-- VELOCITY -->
+      <div class="form-group">
+        <label>Velocity</label>
+
+        <mat-slider min="0" max="3000" step="50" thumbLabel>
+          <input matSliderThumb
+                 [(ngModel)]="motorSettings[selectedMotor].velocity">
+        </mat-slider>
+
+        <input
+          type="number"
+          min="0"
+          max="3000"
+          step="50"
+          [(ngModel)]="motorSettings[selectedMotor].velocity">
+
+      </div>
+
+      <!-- ACCELERATION -->
+      <div class="form-group">
+        <label>Acceleration</label>
+
+        <mat-slider min="0" max="5000" step="50" thumbLabel>
+          <input matSliderThumb
+                 [(ngModel)]="motorSettings[selectedMotor].acceleration">
+        </mat-slider>
+
+        <input
+          type="number"
+          min="0"
+          max="5000"
+          step="50"
+          [(ngModel)]="motorSettings[selectedMotor].acceleration">
+      </div>
+
+      <!-- DECELERATION -->
+      <div class="form-group">
+        <label>Deceleration</label>
+
+        <mat-slider min="0" max="5000" step="50" thumbLabel>
+          <input matSliderThumb
+                 [(ngModel)]="motorSettings[selectedMotor].deceleration">
+        </mat-slider>
+
+        <input
+          type="number"
+          min="0"
+          max="5000"
+          step="50"
+          [(ngModel)]="motorSettings[selectedMotor].deceleration">
+      </div>
+
+      <!-- OG VELOCITY -->
+      <div class="form-group">
+        <label>OG Velocity</label>
+
+        <mat-slider min="0" max="3000" step="50" thumbLabel>
+          <input matSliderThumb
+                 [(ngModel)]="motorSettings[selectedMotor].ogVelocity">
+        </mat-slider>
+
+        <input
+          type="number"
+          min="0"
+          max="3000"
+          step="50"
+          [(ngModel)]="motorSettings[selectedMotor].ogVelocity">
+      </div>
+
+      <button (click)="updateSettings()">Update Settings</button>
+    </div>
+
+    <ng-template #placeholder>
+      <div class="placeholder">
+        Select a motor from the left to configure settings
+      </div>
+    </ng-template>
+
+  </div>
+</div>
