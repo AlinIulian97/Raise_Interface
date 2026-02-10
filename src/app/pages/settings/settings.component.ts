@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { MotorSetting, MotorSettingService } from '../../services/motor-setting.service';
+
 
 type MotorKey = 'Motor 1' | 'Motor 2' | 'Motor 3' | 'Motor 4' | 'Motor 5';
 
@@ -9,39 +11,46 @@ interface MotorSettings {
   velocity: number;
   acceleration: number;
   deceleration: number;
-  ogVelocity: number;
+  jogVelocity: number;
 }
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatSliderModule
-  ],
+  imports: [CommonModule, FormsModule, MatSliderModule],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
-  motors: MotorKey[] = [
-    'Motor 1',
-    'Motor 2',
-    'Motor 3',
-    'Motor 4',
-    'Motor 5'
-  ];
-
+  motors: MotorKey[] = ['Motor 1', 'Motor 2', 'Motor 3', 'Motor 4', 'Motor 5'];
   selectedMotor!: MotorKey;
 
   motorSettings: Record<MotorKey, MotorSettings> = {
-    'Motor 1': { velocity: 1000, acceleration: 1000, deceleration: 1000, ogVelocity: 500 },
-    'Motor 2': { velocity: 1000, acceleration: 1000, deceleration: 1000, ogVelocity: 500 },
-    'Motor 3': { velocity: 1000, acceleration: 1000, deceleration: 1000, ogVelocity: 500 },
-    'Motor 4': { velocity: 1000, acceleration: 1000, deceleration: 1000, ogVelocity: 500 },
-    'Motor 5': { velocity: 1000, acceleration: 1000, deceleration: 1000, ogVelocity: 500 }
+    'Motor 1': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
+    'Motor 2': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
+    'Motor 3': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
+    'Motor 4': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
+    'Motor 5': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 }
   };
+
+  constructor(private motorSettingService: MotorSettingService) {}
+
+  ngOnInit() {
+    // La pornire, preia setările din backend
+    this.motorSettingService.getAll().subscribe(data => {
+      data.forEach(d => {
+        if (this.motors.includes(d.motorName as MotorKey)) {
+          this.motorSettings[d.motorName as MotorKey] = {
+            velocity: d.velocity,
+            acceleration: d.acceleration,
+            deceleration: d.deceleration,
+            jogVelocity: d.jogVelocity
+          };
+        }
+      });
+    });
+  }
 
   selectMotor(motor: MotorKey) {
     this.selectedMotor = motor;
@@ -49,7 +58,17 @@ export class SettingsComponent {
 
   updateSettings() {
     const settings = this.motorSettings[this.selectedMotor];
-    console.log('UPDATE PLC:', this.selectedMotor, settings);
-    alert(`Settings updated for ${this.selectedMotor}`);
+    const dto: MotorSetting = {
+      motorName: this.selectedMotor,
+      velocity: settings.velocity,
+      acceleration: settings.acceleration,
+      deceleration: settings.deceleration,
+      jogVelocity: settings.jogVelocity
+    };
+
+    this.motorSettingService.update(this.selectedMotor, dto).subscribe({
+      next: () => alert(`Settings updated for ${this.selectedMotor}`),
+      error: err => alert(`Error updating motor: ${err.message}`)
+    });
   }
 }
