@@ -12,6 +12,7 @@ interface MotorSettings {
   acceleration: number;
   deceleration: number;
   jogVelocity: number;
+    maxSpeed: number;
 }
 
 @Component({
@@ -27,11 +28,11 @@ export class SettingsComponent implements OnInit {
   selectedMotor!: MotorKey;
 
   motorSettings: Record<MotorKey, MotorSettings> = {
-    'Motor 1': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
-    'Motor 2': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
-    'Motor 3': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
-    'Motor 4': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 },
-    'Motor 5': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 }
+    'Motor 1': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 , maxSpeed : 20 },
+    'Motor 2': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500, maxSpeed : 20 },
+    'Motor 3': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 , maxSpeed : 20},
+    'Motor 4': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500 , maxSpeed : 20},
+    'Motor 5': { velocity: 1000, acceleration: 1000, deceleration: 1000, jogVelocity: 500, maxSpeed : 20 }
   };
 
   constructor(private motorSettingService: MotorSettingService) {}
@@ -45,7 +46,8 @@ export class SettingsComponent implements OnInit {
             velocity: d.velocity,
             acceleration: d.acceleration,
             deceleration: d.deceleration,
-            jogVelocity: d.jogVelocity
+            jogVelocity: d.jogVelocity,
+            maxSpeed: d.maxSpeed
           };
         }
       });
@@ -63,7 +65,8 @@ export class SettingsComponent implements OnInit {
       velocity: settings.velocity,
       acceleration: settings.acceleration,
       deceleration: settings.deceleration,
-      jogVelocity: settings.jogVelocity
+      jogVelocity: settings.jogVelocity,
+        maxSpeed: settings.maxSpeed
     };
 
     this.motorSettingService.update(this.selectedMotor, dto).subscribe({
@@ -71,4 +74,9 @@ export class SettingsComponent implements OnInit {
       error: err => alert(`Error updating motor: ${err.message}`)
     });
   }
-}
+
+  testMotor(motor: MotorKey) {
+  const settings = this.motorSettings[motor];
+  // Aici poți apela serviciul Angular sau să faci orice acțiune
+  alert(`Testing ${motor} with settings:\nVelocity: ${settings.velocity}\nAcceleration: ${settings.acceleration}`);
+}}

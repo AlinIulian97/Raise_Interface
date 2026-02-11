@@ -8,6 +8,7 @@ export interface MotorSetting {
   acceleration: number;
   deceleration: number;
   jogVelocity: number;
+    maxSpeed: number;
 }
 
 @Injectable({

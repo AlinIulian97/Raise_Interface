@@ -4,6 +4,7 @@ import { DoctorComponent } from './pages/doctor/doctor.component';
 import { PatientComponent } from './pages/patient/patient.component';
 import { MovementsComponent } from './pages/movements/movements.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { PlcComponent } from './plc/plc/plc.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },   // Pagina principală
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'patient', component: PatientComponent },
   { path: 'movements', component: MovementsComponent },
   { path: 'settings', component: SettingsComponent },
+    { path: 'test', component: PlcComponent },
   { path: '**', redirectTo: '' } // orice rută greșită -> HomeComponent
 ];
